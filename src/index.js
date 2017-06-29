@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NoteBoard from './components/NoteBoard';
+import NoteBoard from './components/containers/NoteBoard';
 import './styles/main.scss';
+
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import combinedReducers from './dux';
+
+let store = createStore(
+    combinedReducers
+);
+
 
 const Main = () => {
 	return (
-		<div>
+		<Provider store={store}>
 			<NoteBoard />
-		</div>
+		</Provider>
 	);
 };
 

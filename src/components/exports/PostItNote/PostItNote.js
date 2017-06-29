@@ -1,5 +1,5 @@
 import React from 'react';
-import {getPostItStyles} from '../util/PostItStyle';
+import {generatePostItStyles} from './util';
 
 export default class PostItNote extends React.PureComponent {
 	constructor(props) {
@@ -121,7 +121,7 @@ export default class PostItNote extends React.PureComponent {
 		const noteClass = this.props.isSelected ? 'postit-note note-back' : 'postit-note';
 		return (
 			<div className={noteClass}
-				style={getPostItStyles(this.state.x, this.state.y, this.props.isSelected, this.state.moving, this.state.expanding, this.state.noteHeight, this.state.noteWidth, this.state.deleted)}>
+				style={generatePostItStyles(this.state.x, this.state.y, this.props.isSelected, this.state.moving, this.state.expanding, this.state.noteHeight, this.state.noteWidth, this.state.deleted)}>
 				<span onMouseDown={this.onMoveMouseDown} className="postit-title">Drag and drop</span>
 				<span className="postit-delete" onClick={this.deleteNote}>X</span>
 				{

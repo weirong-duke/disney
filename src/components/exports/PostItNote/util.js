@@ -1,4 +1,4 @@
-export const getPostItStyles = (x, y, isSelected, moving, expanding, noteHeight, noteWidth, deleted) => {
+export const generatePostItStyles = (x, y, isSelected, moving, expanding, noteHeight, noteWidth, deleted) => {
 	if (noteWidth < 120) {
 		noteWidth = 120;
 	}

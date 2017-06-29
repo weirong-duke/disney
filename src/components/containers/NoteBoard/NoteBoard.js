@@ -1,6 +1,6 @@
 import React from 'react';
-import PostItNote from './PostItNote';
-import SwimLanes from './SwimLanes';
+import PostItNote from '../../exports/PostItNote';
+import {generateSwimLanes} from './util';
 
 const defaultNotes = [
 	{
@@ -66,7 +66,7 @@ export default class NoteBoard extends React.PureComponent {
 
 				</form>
 
-				{this.state.showSwimLanes && <SwimLanes />}
+				{this.state.showSwimLanes && generateSwimLanes()}
 
 				{this.state.notes.map(
 					(note, noteIndex) => {

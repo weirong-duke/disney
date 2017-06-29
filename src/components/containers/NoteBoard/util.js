@@ -2,7 +2,7 @@ import React from 'react';
 
 const lanes = ['not started', 'in dev', 'qa', 'verified'];
 
-const SwimLanes = (props) => {
+export const generateSwimLanes = () => {
 	return (
 		<table className="board-table">
 
@@ -20,5 +20,3 @@ const SwimLanes = (props) => {
 		</table>
 	);
 };
-
-export default SwimLanes;
