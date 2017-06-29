@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({
-});
+import noteReducer from './PostItNotes';
+
+export default combineReducers({noteReducer});
