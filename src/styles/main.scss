@@ -1,0 +1,118 @@
+body {
+    font-family: 'Just Me Again Down Here', cursive;
+}
+
+button {
+    padding: 8px 24px;
+    border: none;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+}
+
+//CSS for swim lane table;
+.board-table {
+    border-collapse: collapse;
+    font-size: 50px;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+
+    td + td,
+    th + th {
+        border-left: 5px solid;
+    }
+}
+
+.toggle-swim-button {
+    background-color:  #0099ff;
+    color: white;
+}
+
+//Create button and input for creating notes
+.create-button {
+	background-color: green;
+	color: white;
+}
+
+.create-input {
+	height: 24px;
+	width: 125px;
+	border-radius: 4px;
+}
+
+//Actual CSS for post it notes and their reverse sides
+.postit-note {
+	display: inline-block;
+    font-size: 20px;
+	border: 1px solid #BEB347;
+	background-color: #ffea5b;
+	position: fixed;
+	cursor: pointer;
+	overflow: hidden;
+	transform: rotateX(0deg);
+	transition: all 0.5s ease-in-out;
+    //Chrome + Safari
+    -webkit-transition: all 0.5s ease-in-out;
+    //Firefox
+    -moz-transition: all 0.5s ease-in-out;
+    //Opera
+    -o-transition: all 0.5s ease-in-out;
+
+	.postit-title {
+	  	cursor: move;
+        backface-visibility: hidden;
+		text-align:center;
+        width:80%;
+        display: inline-block;
+        height:30px;
+        background-color: #beb347;
+	}
+
+    .postit-delete {
+        width: 20%;
+        height:30px;
+        display: inline-block;
+        background-color: red;
+        text-align: center;
+    }
+
+	.postit-content {
+        height: calc(100% - 30px);
+        width: 100%;
+    }
+
+  	.postit-expander {
+	  	cursor: nwse-resize;
+		position: relative;
+		width: 20px;
+		float: right;
+		top: -30px;
+		text-align: right;
+		vertical-align: text-bottom;
+	}
+
+	&.note-back {
+		transform: rotateX(-180deg);
+		background-color: #0099ff;
+        border: none;
+        text-align: center;
+		position: fixed;
+
+		.postit-title {
+    		display: none;
+		}
+
+        .postit-delete {
+            display:none;
+        }
+
+	  	.postit-expander {
+		  display: none;
+		}
+
+		.postit-content {
+			transform: rotateX(180deg);
+		}
+	}
+}
