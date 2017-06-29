@@ -2,34 +2,22 @@ import React from 'react';
 import PostItNote from '../../exports/PostItNote';
 import {generateSwimLanes} from './util';
 
-const defaultNotes = [
-	{
-		text: 'Blaine is dead'
-	},
-	{
-		text: 'Remember to finish that disney thing'
-	}
-];
 
 export default class NoteBoard extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			notes: defaultNotes,
 			createText: '',
-			selectedNote: null,
-			showSwimLanes: false
+			selectedNote: null
 		};
 
-		this.addNote = this.addNote.bind(this);
 		this.alterInputText = this.alterInputText.bind(this);
+		this.addNote = this.addNote.bind(this);
 		this.toggleSwimLane = this.toggleSwimLane.bind(this);
 	}
 
 	addNote() {
-		const tempNewNotes = this.state.notes.slice(0);
-		tempNewNotes.push({text: this.state.createText});
-		this.setState({notes: tempNewNotes});
+		this.props.addNewNote({text: this.state.createText});
 	}
 
 	alterInputText(e) {
@@ -50,9 +38,7 @@ export default class NoteBoard extends React.PureComponent {
 
 	toggleSwimLane(e) {
 		e.preventDefault();
-		this.setState({
-			showSwimLanes: !this.state.showSwimLanes
-		});
+		this.props.toggleSwimLanes();
 	}
 
 	render() {
@@ -66,9 +52,9 @@ export default class NoteBoard extends React.PureComponent {
 
 				</form>
 
-				{this.state.showSwimLanes && generateSwimLanes()}
+				{this.props.boardProperties.showSwimLanes && generateSwimLanes()}
 
-				{this.state.notes.map(
+				{this.props.noteList && this.props.noteList.map(
 					(note, noteIndex) => {
 						return <PostItNote
 							initialY={80}

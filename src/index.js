@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import combinedReducers from './dux';
 
-let store = createStore(combinedReducers);
+let store = createStore(combinedReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const Main = () => {
 	return (

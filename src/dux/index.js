@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
-import noteReducer from './PostItNotes';
+import boardReducer from './NoteBoard';
 
-export default combineReducers({noteReducer});
+export default combineReducers({board: boardReducer});
