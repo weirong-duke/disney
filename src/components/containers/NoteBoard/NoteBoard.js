@@ -6,33 +6,31 @@ import {generateSwimLanes} from './util';
 export default class NoteBoard extends React.PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = {
-			createText: '',
-			selectedNote: null
-		};
 
-		this.alterInputText = this.alterInputText.bind(this);
 		this.addNote = this.addNote.bind(this);
+		this.alterInputText = this.alterInputText.bind(this);
 		this.toggleSwimLane = this.toggleSwimLane.bind(this);
+		this.selectNote = this.selectNote.bind(this);
 	}
 
 	addNote() {
-		this.props.addNewNote({text: this.state.createText});
+		this.props.addNewNote({text: this.props.noteInput});
 	}
 
 	alterInputText(e) {
-		this.setState({createText: e.target.value});
+		this.props.updateNoteInput(e.target.value);
 	}
 	submitCreateNote(e) {
 		e.preventDefault();
 	}
 
 	selectNote(noteIndex) {
-		if (this.state.selectedNote === noteIndex) {
-			this.setState({selectedNote: null});
+		const selectedNote = this.props.boardProperties.selectedNote;
+		if (selectedNote === noteIndex) {
+			this.props.selectNote(null);
 		}
 		else {
-			this.setState({selectedNote: noteIndex});
+			this.props.selectNote(noteIndex);
 		}
 	}
 
@@ -42,10 +40,10 @@ export default class NoteBoard extends React.PureComponent {
 	}
 
 	render() {
-		return (
+		return this.props.boardProperties ? (
 			<div>
 				<form onSubmit={this.submitCreateNote}>
-					<input className="create-input" onChange={this.alterInputText} />
+					<input className="create-input" value={this.props.noteInput} onChange={this.alterInputText} />
 
 					<button className="create-button" onClick={this.addNote}>Add note</button>
 					<button className="toggle-swim-button" onClick={this.toggleSwimLane}>Toggle swim lane display</button>
@@ -60,12 +58,12 @@ export default class NoteBoard extends React.PureComponent {
 							initialY={80}
 							initialX={10}
 							clickNote={() => this.selectNote(noteIndex)}
-							isSelected={noteIndex === this.state.selectedNote}
+							isSelected={noteIndex === this.props.boardProperties.selectedNote}
 							key={noteIndex}
 							text={note.text} />;
 					})
 				}
 			</div>
-		);
+		) : <div>Loading...</div>
 	}
 }

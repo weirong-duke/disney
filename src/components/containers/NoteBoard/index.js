@@ -2,16 +2,21 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import NoteBoard from './NoteBoard';
-import {toggleSwimLanes, addNewNote} from '../../../dux/NoteBoard';
+import {toggleSwimLanes, addNewNote, updateNoteInput, selectNote} from '../../../dux/NoteBoard';
 
 const mapStateToProps = (state) => {
-	return {noteList: state.board.noteList, boardProperties: state.board};
+	return {
+		noteList: state.board.noteList,
+		boardProperties: state.board,
+		noteInput: state.board.noteInput};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({
 		toggleSwimLanes,
-		addNewNote
+		addNewNote,
+		updateNoteInput,
+		selectNote
 	}, dispatch);
 };
 
