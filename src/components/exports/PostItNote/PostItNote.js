@@ -1,6 +1,7 @@
 import React from 'react';
 import {generatePostItStyles} from './util';
 
+
 export default class PostItNote extends React.PureComponent {
 	constructor(props) {
 		super(props);
@@ -118,18 +119,14 @@ export default class PostItNote extends React.PureComponent {
 	}
 
 	render() {
+		const {x, y, moving, expanding, deleted, noteHeight, noteWidth} = this.state;
 		const noteClass = this.props.isSelected ? 'postit-note note-back' : 'postit-note';
 		return (
 			<div className={noteClass}
-				style={generatePostItStyles(this.state.x, this.state.y, this.props.isSelected, this.state.moving, this.state.expanding, this.state.noteHeight, this.state.noteWidth, this.state.deleted)}>
+				style={generatePostItStyles(x, y, this.props.isSelected, moving, expanding, noteHeight, noteWidth, deleted)}>
 				<span onMouseDown={this.onMoveMouseDown} className="postit-title">Drag and drop</span>
 				<span className="postit-delete" onClick={this.deleteNote}>X</span>
-				{
-					/*
-					 I would have abstracted this into a separate prop, backText or something, but I had semi-screwed up my CSS classing by here and
-					 didn't really have time to retrack it
-					 */
-				}
+
 				{!this.props.isSelected && <div onClick={this.clickNote} className="postit-content">Click to flip!</div>}
 				{this.props.isSelected && <div onClick={this.clickNote} className="postit-content">{this.props.text}</div>}
 				<div className="postit-expander" onMouseDown={this.onExpandMouseDown}>+</div>

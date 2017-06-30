@@ -14,7 +14,21 @@ export default class NoteBoard extends React.PureComponent {
 	}
 
 	addNote() {
-		this.props.addNewNote({text: this.props.noteInput});
+		const initialX = 20;
+		const initialY = 40;
+		const defaultNote = {
+			x: initialX,
+			y: initialY,
+			noteWidth: 150,
+			noteHeight: 150,
+			moveDelta: {},
+			expandCoord: {},
+			moving: false,
+			expanding: false,
+			deleted: false
+		};
+		defaultNote.text = this.props.noteInput;
+		this.props.addNewNote(defaultNote);
 	}
 
 	alterInputText(e) {
@@ -55,8 +69,8 @@ export default class NoteBoard extends React.PureComponent {
 				{this.props.noteList && this.props.noteList.map(
 					(note, noteIndex) => {
 						return <PostItNote
-							initialY={80}
 							initialX={10}
+							initialY={80}
 							clickNote={() => this.selectNote(noteIndex)}
 							isSelected={noteIndex === this.props.boardProperties.selectedNote}
 							key={noteIndex}
