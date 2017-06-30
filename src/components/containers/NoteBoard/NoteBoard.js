@@ -78,6 +78,6 @@ export default class NoteBoard extends React.PureComponent {
 					})
 				}
 			</div>
-		) : <div>Loading...</div>
+		) : <div>Loading...</div>;
 	}
 }

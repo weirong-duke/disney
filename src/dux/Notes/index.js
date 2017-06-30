@@ -40,5 +40,5 @@ export function updateNoteInput(text) {
 	return {
 		type: UPDATE_NOTE_INPUT,
 		text
-	}
+	};
 }

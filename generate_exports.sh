@@ -3,8 +3,8 @@
 #This is what shows up in the /lib/ folder
 
 #For example:
-#react-library-boilerplate/src/js/components/exports/PostItNote
-#Generates ./lib/exports/PostItNote
+#react-library-boilerplate/src/components/exports/PostItNote
+#Generates ./lib/PostItNote
 #
 
 #import _PostItNote from './PostItNote';

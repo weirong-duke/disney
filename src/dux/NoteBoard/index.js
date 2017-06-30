@@ -32,5 +32,5 @@ export function selectNote(noteIndex) {
 	return {
 		type: SELECT_NOTE,
 		noteIndex
-	}
+	};
 }
